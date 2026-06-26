@@ -55,19 +55,32 @@ async function list(filters, pagination) {
     params
   );
 
+  const pageSize = Number(pagination.pageSize) || 10;
+  const offset = Number(pagination.offset) || 0;
+
   const [rows] = await pool.execute(
     `SELECT d.*, r.name AS repository_name
     FROM documents d
     LEFT JOIN repositories r ON r.id = d.repository_id
     WHERE ${whereSql}
     ORDER BY ${orderSql}
-    LIMIT :pageSize OFFSET :offset`,
-    {
-      ...params,
-      pageSize: pagination.pageSize,
-      offset: pagination.offset,
-    }
+    LIMIT ${pageSize} OFFSET ${offset}`,
+    params
   );
+
+  // const [rows] = await pool.execute(
+  //   `SELECT d.*, r.name AS repository_name
+  //   FROM documents d
+  //   LEFT JOIN repositories r ON r.id = d.repository_id
+  //   WHERE ${whereSql}
+  //   ORDER BY ${orderSql}
+  //   LIMIT :pageSize OFFSET :offset`,
+  //   {
+  //     ...params,
+  //     pageSize: pagination.pageSize,
+  //     offset: pagination.offset,
+  //   }
+  // );
 
   return {
     rows,

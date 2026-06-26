@@ -23,7 +23,7 @@ const allowedOrigins = [
   "http://localhost:5500",
   "http://127.0.0.1:5500",
   process.env.FRONTEND_URL,
-];
+].filter(Boolean);
 
 app.use(
   cors({
@@ -34,6 +34,9 @@ app.use(
 app.use(express.json({ limit: "2mb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
+// app.use(
+//   morgan(process.env.NODE_ENV === "production" ? "combined" : "dev")
+// ) gunakan line ini kalo sudah tahap production;
 
 app.get("/", (req, res) => {
   res.json({
