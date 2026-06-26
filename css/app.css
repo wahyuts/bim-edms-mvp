@@ -1,0 +1,38 @@
+:root {
+  color-scheme: dark;
+  --edms-bg: #061726;
+  --edms-card: #0b2239;
+  --edms-border: #1e3a5f;
+  --edms-primary: #2563eb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  transition: all 150ms ease;
+}
+
+.edms-scrollbar::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.edms-scrollbar::-webkit-scrollbar-thumb {
+  background: #1e3a5f;
+  border-radius: 999px;
+}
+
+[data-action-cell]:has([data-action-menu][open]) {
+  z-index: 1000;
+}
