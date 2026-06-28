@@ -31,6 +31,10 @@ const documentColumns = [
   { key: "revision", label: "Revision" },
   { key: "status", label: "Status", type: "badge" },
   { key: "sla", label: "SLA Timer" },
+];
+
+const documentDetailColumns = [
+  ...documentColumns,
   { key: "nasLocation", label: "NAS Location" },
 ];
 
@@ -202,7 +206,7 @@ function renderRightSidebar({ documents, storageRepository }) {
 
 function renderDocumentDetail(documentItem) {
   return `<dl class="grid gap-3 text-sm md:grid-cols-2">
-    ${documentColumns
+    ${documentDetailColumns
       .filter((column) => column.key !== "no")
       .map(
         (column) => `<div class="rounded-xl bg-[#061726] p-3">
@@ -307,6 +311,7 @@ export async function render(container) {
             })),
             currentPage: state.currentPage,
             totalPages,
+            inlineActions: true,
           })}
         </section>
       </div>
