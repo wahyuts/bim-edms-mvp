@@ -86,6 +86,8 @@ Default source code seed currently uses role `Administrator` for default user `d
     "status": "Approved",
     "sla": "2026-06-22",
     "slaStartedAt": "2026-06-22 09:00",
+    "verifyDeadlineDate": "2026-06-29",
+    "reviewComment": "Approved for current review cycle.",
     "nasLocation": "\\\\NAS\\LAB\\CDU\\PFD001"
   }
 ]
@@ -103,6 +105,8 @@ SLA Timer Rule
 * `sla` stores the user-selected SLA/upload date.
 * `slaStartedAt` stores the real timestamp when `sla` was created or changed.
 * Dashboard SLA Timer count-up uses `slaStartedAt`.
+* `verifyDeadlineDate` stores the selected verification deadline date.
+* `reviewComment` stores free text review notes.
 
 ---
 

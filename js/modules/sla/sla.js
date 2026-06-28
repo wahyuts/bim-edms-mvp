@@ -9,6 +9,7 @@ import { get } from "../../services/storage.js";
 import { visibleActions } from "../../services/access-control.js";
 import { COLLECTIONS, DOCUMENT_EDITABLE_STATUSES } from "../../utils/constants.js";
 import { closeActionMenus, enforceMinimumNumberInput, handleFileInputChange, serializeForm } from "../../utils/dom.js";
+import { applyDocumentReviewFields, normalizeDocumentFormData } from "../../utils/document-form.js";
 import { formatCount } from "../../utils/formatter.js";
 import { formatDocumentSlaTimer, getDocumentSlaOverviewStatus, getDocumentSlaTimerClass } from "../../utils/sla-timer.js";
 
@@ -39,7 +40,7 @@ const documentFields = [
   { name: "area", label: "Area" },
   { name: "revision", label: "Revision", type: "number", required: true, min: 0 },
   { name: "status", label: "Status", required: true, options: DOCUMENT_EDITABLE_STATUSES },
-  { name: "sla", label: "SLA Timer", type: "date", lang: "en-GB", placeholder: "dd/mm/yyyy" },
+  { name: "sla", label: "SLA Timer", type: "date", lang: "en-US", placeholder: "mm/dd/yyyy" },
   { name: "nasLocation", label: "NAS Location" },
 ];
 
@@ -80,7 +81,7 @@ function renderSummary(documents) {
 }
 
 function renderEditDocumentForm(documentItem) {
-  const fields = documentFields.map((fieldConfig) => ({ ...fieldConfig, value: documentItem[fieldConfig.name] ?? "" }));
+  const fields = applyDocumentReviewFields(documentFields, documentItem).map((fieldConfig) => ({ ...fieldConfig, value: fieldConfig.value ?? documentItem[fieldConfig.name] ?? "" }));
   return form({ id: "sla-document-form", fields });
 }
 
@@ -168,7 +169,7 @@ export async function render(container) {
       });
       container.querySelector("#sla-document-form").addEventListener("submit", (submitEvent) => {
         submitEvent.preventDefault();
-        const data = serializeForm(submitEvent.currentTarget);
+        const data = normalizeDocumentFormData(serializeForm(submitEvent.currentTarget), documentItem);
         updateResource("documents", documentItem.id, data, submitEvent.currentTarget)
           .then(async (updatedDocument) => {
             await syncDocuments();

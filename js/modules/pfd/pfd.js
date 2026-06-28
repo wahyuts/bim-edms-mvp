@@ -1,5 +1,6 @@
 import { renderCrudPage } from "../../utils/crud-page.js";
 import { COLLECTIONS, DOCUMENT_EDITABLE_STATUSES, DOCUMENT_STATUS_FILTER_OPTIONS } from "../../utils/constants.js";
+import { applyDocumentReviewFields, normalizeDocumentFormData } from "../../utils/document-form.js";
 
 export function render(container) {
   renderCrudPage(container, {
@@ -11,7 +12,8 @@ export function render(container) {
     permissionModule: "document",
     description: "Filtered view from Document Register for PFD documents.",
     rowFilter: (documentItem) => documentItem.discipline === "PFD",
-    prepareData: (data) => ({ ...data, discipline: "PFD" }),
+    prepareData: (data, record) => ({ ...normalizeDocumentFormData(data, record), discipline: "PFD" }),
+    prepareFields: (fields, record) => applyDocumentReviewFields(fields, record),
     actions: ["view", "edit", "delete", "upload", "download"],
     inlineActions: true,
     searchPlaceholder: "Search document...",
@@ -39,7 +41,7 @@ export function render(container) {
       { name: "area", label: "Area" },
       { name: "revision", label: "Revision", type: "number", required: true, min: 0 },
       { name: "status", label: "Status", required: true, options: DOCUMENT_EDITABLE_STATUSES },
-      { name: "sla", label: "SLA Timer", type: "date", lang: "en-GB", placeholder: "dd/mm/yyyy" },
+      { name: "sla", label: "SLA Timer", type: "date", lang: "en-US", placeholder: "mm/dd/yyyy" },
       { name: "nasLocation", label: "NAS Location" },
     ],
   });

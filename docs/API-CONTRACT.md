@@ -166,6 +166,9 @@ Multipart upload for create/update:
 * file field: `file`
 * allowed extensions: `.pdf`, `.dwg`, `.dxf`
 * max file size: 30 MB
+* `sla_due_at` stores the upload/SLA date.
+* `verify_deadline_date` stores the selected verification deadline date.
+* `review_comment` stores free text review notes.
 
 PUT /documents/{id}
 

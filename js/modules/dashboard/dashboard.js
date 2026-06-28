@@ -11,6 +11,7 @@ import { visibleActions } from "../../services/access-control.js";
 import { get } from "../../services/storage.js";
 import { COLLECTIONS, DEFAULT_PAGE_SIZE, DOCUMENT_EDITABLE_STATUSES, DOCUMENT_STATUS_FILTER_OPTIONS, ROUTES } from "../../utils/constants.js";
 import { closeActionMenus, enforceMinimumNumberInput, handleFileInputChange, serializeForm } from "../../utils/dom.js";
+import { applyDocumentReviewFields, normalizeDocumentFormData } from "../../utils/document-form.js";
 import { escapeHtml, formatCount } from "../../utils/formatter.js";
 import { formatDocumentSlaTimer, getDocumentEscalationLevel, getDocumentSlaOverviewStatus, getDocumentSlaTimerClass, isDocumentSlaOverdue } from "../../utils/sla-timer.js";
 
@@ -35,6 +36,8 @@ const documentColumns = [
 
 const documentDetailColumns = [
   ...documentColumns,
+  { key: "verifyDeadlineDate", label: "Verify deadline date" },
+  { key: "reviewComment", label: "Review Comment" },
   { key: "nasLocation", label: "NAS Location" },
 ];
 
@@ -53,7 +56,7 @@ const documentFields = [
   { name: "area", label: "Area" },
   { name: "revision", label: "Revision", type: "number", required: true, min: 0 },
   { name: "status", label: "Status", required: true, options: DOCUMENT_EDITABLE_STATUSES },
-  { name: "sla", label: "SLA Timer", type: "date", lang: "en-GB", placeholder: "dd/mm/yyyy" },
+  { name: "sla", label: "SLA Timer", type: "date", lang: "en-US", placeholder: "mm/dd/yyyy" },
   { name: "nasLocation", label: "NAS Location" },
 ];
 
@@ -219,7 +222,7 @@ function renderDocumentDetail(documentItem) {
 }
 
 function renderEditDocumentForm(documentItem) {
-  const fields = documentFields.map((fieldConfig) => ({ ...fieldConfig, value: documentItem[fieldConfig.name] ?? "" }));
+  const fields = applyDocumentReviewFields(documentFields, documentItem).map((fieldConfig) => ({ ...fieldConfig, value: fieldConfig.value ?? documentItem[fieldConfig.name] ?? "" }));
   return form({ id: "dashboard-document-form", fields });
 }
 
@@ -389,7 +392,7 @@ export async function render(container) {
       });
       container.querySelector("#dashboard-document-form").addEventListener("submit", (submitEvent) => {
         submitEvent.preventDefault();
-        const data = serializeForm(submitEvent.currentTarget);
+        const data = normalizeDocumentFormData(serializeForm(submitEvent.currentTarget), documentItem);
         updateResource("documents", documentItem.id, data, submitEvent.currentTarget)
           .then(async (updatedDocument) => {
             await syncDashboardData();

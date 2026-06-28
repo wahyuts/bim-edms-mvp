@@ -456,6 +456,18 @@ createdBy
 updatedBy
 ```
 
+Document metadata fields:
+
+```
+verifyDeadlineDate
+
+reviewComment
+```
+
+`verifyDeadlineDate` stores the selected verification deadline date as `YYYY-MM-DD`.
+
+`reviewComment` stores free text review notes.
+
 ---
 
 # ID Rules

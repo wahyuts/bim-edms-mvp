@@ -1,5 +1,11 @@
 # UI Changelog
 
+## 2026-06-28
+
+- Changed SLA Timer on Create PFD/Create P&ID to a read-only auto-filled date display.
+- Changed SLA Timer on Edit PFD/Edit P&ID/Edit Document to a read-only upload/SLA date display.
+- Added Verify deadline date and Review Comment fields to PFD/P&ID create/edit and Edit Document forms, with Verify deadline date disabled for Client edit flows.
+
 ## 2026-06-25
 
 - Changed Edit User Profile Name selection to a dropdown-only control without manual typing.

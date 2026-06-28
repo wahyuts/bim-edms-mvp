@@ -15,6 +15,7 @@ export function field({
   autoFillTarget = "",
   fullWidth = false,
   disabled = false,
+  readonly = false,
   list = "",
   lang = "",
   placeholder = "",
@@ -28,6 +29,7 @@ export function field({
   const acceptAttribute = accept ? ` accept="${escapeHtml(accept)}"` : "";
   const autoFillAttribute = dataAttribute("autofill-target", autoFillTarget);
   const disabledAttribute = disabled ? " disabled" : "";
+  const readonlyAttribute = readonly ? " readonly" : "";
   const listAttribute = list ? ` list="${escapeHtml(list)}"` : "";
   const langAttribute = lang ? ` lang="${escapeHtml(lang)}"` : "";
   const placeholderAttribute = placeholder ? ` placeholder="${escapeHtml(placeholder)}"` : "";
@@ -39,7 +41,7 @@ export function field({
     : "";
   const control = options.length
     ? `<select id="${name}" name="${name}" class="${baseClass}" ${required ? "required" : ""}${disabledAttribute}${langAttribute}>${placeholderOption}${options.map((option) => `<option value="${escapeHtml(option)}" ${option === value ? "selected" : ""}>${escapeHtml(option)}</option>`).join("")}</select>`
-    : `<input id="${name}" name="${name}" type="${type}" ${type === "file" ? "" : `value="${escapeHtml(value)}"`} class="${baseClass}" ${required ? "required" : ""}${acceptAttribute}${autoFillAttribute}${disabledAttribute}${listAttribute}${langAttribute}${placeholderAttribute}${minAttribute}${maxAttribute}${stepAttribute} />`;
+    : `<input id="${name}" name="${name}" type="${type}" ${type === "file" ? "" : `value="${escapeHtml(value)}"`} class="${baseClass}" ${required ? "required" : ""}${acceptAttribute}${autoFillAttribute}${disabledAttribute}${readonlyAttribute}${listAttribute}${langAttribute}${placeholderAttribute}${minAttribute}${maxAttribute}${stepAttribute} />`;
   const helper = type === "file" ? `<p class="mt-1 text-xs text-slate-400" data-file-detail-for="${name}">No file selected.</p>` : "";
   return `<label class="block text-sm font-medium text-slate-200 ${fullWidth ? "md:col-span-2" : ""}" for="${name}">${label} ${requiredMark}${control}${helper}</label>`;
 }

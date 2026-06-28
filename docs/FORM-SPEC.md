@@ -191,6 +191,20 @@ Fields
 
 * Attachment
 
+Edit Document also supports:
+
+* SLA Timer
+
+* Verify deadline date
+
+* Review Comment
+
+Behavior:
+
+* Edit Document renders SLA Timer read-only from the document upload/SLA date in `mm/dd/yyyy` display format.
+
+* Client role cannot edit Verify deadline date on Edit Document.
+
 Attachment accepts PDF, DWG, and DXF files up to 30 MB.
 
 Selected file detail displays file name and file size after user chooses a file.
@@ -213,7 +227,7 @@ Revision must be 0 or greater.
 
 Source alignment:
 
-Form Create/Edit PFD menggunakan `DOCUMENT_EDITABLE_STATUSES`, sehingga `Final As-Built` tidak ditampilkan sebagai opsi status. Source code juga mendukung field `Area`, `SLA Timer`, dan `NAS Location`.
+Form Create/Edit PFD menggunakan `DOCUMENT_EDITABLE_STATUSES`, sehingga `Final As-Built` tidak ditampilkan sebagai opsi status. Source code juga mendukung field `Area`, `SLA Timer`, `Verify deadline date`, `Review Comment`, dan `NAS Location`.
 
 Fields
 
@@ -226,6 +240,22 @@ Fields
 * Status
 
 * Upload Document
+
+* SLA Timer
+
+* Verify deadline date
+
+* Review Comment
+
+* NAS Location
+
+Behavior
+
+* Create PFD auto-fills SLA Timer with today's date and renders it read-only in `mm/dd/yyyy` display format.
+
+* Edit PFD renders SLA Timer read-only from the document upload/SLA date in `mm/dd/yyyy` display format.
+
+* Client role cannot edit Verify deadline date on Edit PFD.
 
 Buttons
 
@@ -247,7 +277,7 @@ Selected file detail displays file name and file size after user chooses a file.
 
 Source alignment:
 
-Form Create/Edit P&ID menggunakan `DOCUMENT_EDITABLE_STATUSES`, sehingga `Final As-Built` tidak ditampilkan sebagai opsi status. Source code juga mendukung field `Area`, `SLA Timer`, dan `NAS Location`.
+Form Create/Edit P&ID menggunakan `DOCUMENT_EDITABLE_STATUSES`, sehingga `Final As-Built` tidak ditampilkan sebagai opsi status. Source code juga mendukung field `Area`, `SLA Timer`, `Verify deadline date`, `Review Comment`, dan `NAS Location`.
 
 Fields
 
@@ -260,6 +290,22 @@ Fields
 * Status
 
 * Upload Document
+
+* SLA Timer
+
+* Verify deadline date
+
+* Review Comment
+
+* NAS Location
+
+Behavior
+
+* Create P&ID auto-fills SLA Timer with today's date and renders it read-only in `mm/dd/yyyy` display format.
+
+* Edit P&ID renders SLA Timer read-only from the document upload/SLA date in `mm/dd/yyyy` display format.
+
+* Client role cannot edit Verify deadline date on Edit P&ID.
 
 Buttons
 

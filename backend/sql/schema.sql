@@ -85,6 +85,8 @@ CREATE TABLE IF NOT EXISTS documents (
   status VARCHAR(100) NOT NULL,
   sla_status VARCHAR(50) NULL,
   sla_due_at DATETIME NULL,
+  verify_deadline_date DATE NULL,
+  review_comment TEXT NULL,
   sla_started_at DATETIME NULL,
   repository_id BIGINT UNSIGNED NULL,
   file_path TEXT NULL,
@@ -278,6 +280,8 @@ INSERT INTO documents (
   status,
   sla_status,
   sla_due_at,
+  verify_deadline_date,
+  review_comment,
   sla_started_at,
   repository_id,
   file_path,
@@ -295,6 +299,8 @@ SELECT
   'Approved',
   'Final As-Built',
   '2026-06-22 09:00:00',
+  '2026-06-29',
+  'Approved for current review cycle.',
   '2026-06-22 09:00:00',
   repo.id,
   '\\\\NAS\\LAB\\CDU\\PFD001',
@@ -303,7 +309,7 @@ SELECT
   'application/pdf'
 FROM repositories repo
 WHERE repo.name = 'NAS'
-ON DUPLICATE KEY UPDATE title = VALUES(title), description = VALUES(description), discipline = VALUES(discipline), area = VALUES(area), revision = VALUES(revision), status = VALUES(status), sla_status = VALUES(sla_status), sla_due_at = VALUES(sla_due_at), sla_started_at = VALUES(sla_started_at), repository_id = VALUES(repository_id), file_path = VALUES(file_path), file_name = VALUES(file_name), file_size = VALUES(file_size), mime_type = VALUES(mime_type);
+ON DUPLICATE KEY UPDATE title = VALUES(title), description = VALUES(description), discipline = VALUES(discipline), area = VALUES(area), revision = VALUES(revision), status = VALUES(status), sla_status = VALUES(sla_status), sla_due_at = VALUES(sla_due_at), verify_deadline_date = VALUES(verify_deadline_date), review_comment = VALUES(review_comment), sla_started_at = VALUES(sla_started_at), repository_id = VALUES(repository_id), file_path = VALUES(file_path), file_name = VALUES(file_name), file_size = VALUES(file_size), mime_type = VALUES(mime_type);
 
 INSERT INTO documents (
   document_number,
@@ -315,6 +321,8 @@ INSERT INTO documents (
   status,
   sla_status,
   sla_due_at,
+  verify_deadline_date,
+  review_comment,
   sla_started_at,
   repository_id,
   file_path,
@@ -332,6 +340,8 @@ SELECT
   'Client Review',
   'At Risk',
   '2026-06-20 14:32:00',
+  '2026-06-30',
+  'Client verification in progress.',
   '2026-06-20 14:32:00',
   repo.id,
   '\\\\NAS\\LAB\\CDU\\PID010',
@@ -340,7 +350,7 @@ SELECT
   'application/pdf'
 FROM repositories repo
 WHERE repo.name = 'NAS'
-ON DUPLICATE KEY UPDATE title = VALUES(title), description = VALUES(description), discipline = VALUES(discipline), area = VALUES(area), revision = VALUES(revision), status = VALUES(status), sla_status = VALUES(sla_status), sla_due_at = VALUES(sla_due_at), sla_started_at = VALUES(sla_started_at), repository_id = VALUES(repository_id), file_path = VALUES(file_path), file_name = VALUES(file_name), file_size = VALUES(file_size), mime_type = VALUES(mime_type);
+ON DUPLICATE KEY UPDATE title = VALUES(title), description = VALUES(description), discipline = VALUES(discipline), area = VALUES(area), revision = VALUES(revision), status = VALUES(status), sla_status = VALUES(sla_status), sla_due_at = VALUES(sla_due_at), verify_deadline_date = VALUES(verify_deadline_date), review_comment = VALUES(review_comment), sla_started_at = VALUES(sla_started_at), repository_id = VALUES(repository_id), file_path = VALUES(file_path), file_name = VALUES(file_name), file_size = VALUES(file_size), mime_type = VALUES(mime_type);
 
 INSERT INTO transmittals (transmittal_number, type, sender, destination, transmittal_date, status, remarks) VALUES
   ('TR-IN-2025-001', 'Incoming', 'Client', NULL, '2025-05-27 09:00:00', 'Received', 'Initial incoming transmittal'),

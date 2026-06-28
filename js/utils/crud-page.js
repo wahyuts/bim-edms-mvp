@@ -58,6 +58,8 @@ const documentViewFields = [
   { key: "revision", label: "Revision" },
   { key: "status", label: "Status", type: "badge" },
   { key: "sla", label: "SLA Timer" },
+  { key: "verifyDeadlineDate", label: "Verify deadline date" },
+  { key: "reviewComment", label: "Review Comment" },
   { key: "nasLocation", label: "NAS Location" },
 ];
 
@@ -203,7 +205,8 @@ export function renderCrudPage(container, config) {
   }
 
   function openForm(record = null) {
-    const fields = config.fields.map((fieldConfig) => ({ ...fieldConfig, value: record?.[fieldConfig.name] ?? fieldConfig.value ?? "" }));
+    const baseFields = typeof config.prepareFields === "function" ? config.prepareFields(config.fields, record) : config.fields;
+    const fields = baseFields.map((fieldConfig) => ({ ...fieldConfig, value: fieldConfig.value ?? record?.[fieldConfig.name] ?? "" }));
     container.querySelector("#modal-root").innerHTML = modal({
       title: record ? `Edit ${config.itemName}` : `Create ${config.itemName}`,
       body: form({ id: "record-form", fields }),

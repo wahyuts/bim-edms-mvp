@@ -22,6 +22,9 @@ function normalizeDocumentPayload(body, existing = {}) {
   const revision = Number(body.revision ?? existing.revision ?? 1);
   const status = body.status ?? existing.status;
   const sla_due_at = body.sla_due_at ?? body.slaDueAt ?? existing.sla_due_at ?? null;
+  const verify_deadline_date =
+    body.verify_deadline_date ?? body.verifyDeadlineDate ?? existing.verify_deadline_date ?? null;
+  const review_comment = body.review_comment ?? body.reviewComment ?? existing.review_comment ?? null;
   const sla_started_at =
     body.sla_started_at ?? body.slaStartedAt ?? existing.sla_started_at ?? (sla_due_at ? new Date() : null);
 
@@ -35,6 +38,8 @@ function normalizeDocumentPayload(body, existing = {}) {
     status,
     sla_status: body.sla_status ?? body.slaStatus ?? existing.sla_status ?? null,
     sla_due_at,
+    verify_deadline_date,
+    review_comment,
     sla_started_at,
     repository_id: body.repository_id ?? body.repositoryId ?? existing.repository_id ?? null,
     file_path: existing.file_path ?? null,

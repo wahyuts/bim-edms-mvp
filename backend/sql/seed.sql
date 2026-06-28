@@ -235,11 +235,11 @@ INSERT INTO `audit_trail` (`id`, `user_id`, `action`, `entity`, `entity_id`, `de
 -- Dumping data for table `documents`
 --
 
-INSERT INTO `documents` (`id`, `document_number`, `title`, `description`, `discipline`, `area`, `revision`, `status`, `sla_status`, `sla_due_at`, `sla_started_at`, `repository_id`, `file_path`, `file_name`, `file_size`, `mime_type`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'P-CDU-PFD-001', 'Process Flow Diagram Area 2', 'Process Flow Diagram Area 2', 'PFD', 'CDU', 1, 'Approved', 'Final As-Built', '2026-06-22 09:00:00', '2026-06-22 09:00:00', 1, '\\\\NAS\\LAB\\CDU\\PFD001', 'P-CDU-PFD-001.pdf', 1024000, 'application/pdf', '2026-06-24 12:06:10', '2026-06-24 12:06:10', NULL),
-(2, 'P-CDU-PID-010', 'Heater System', 'Heater System', 'PID', 'CDU', 2, 'Client Review', 'At Risk', '2026-06-20 14:32:00', '2026-06-20 14:32:00', 1, '\\\\NAS\\LAB\\CDU\\PID010', 'P-CDU-PID-010.pdf', 2048000, 'application/pdf', '2026-06-24 12:06:10', '2026-06-24 12:06:10', NULL),
-(8, '1 Februari 2026', 'oke', 'oke', 'PFD', 'Tangerang', 1, 'Client Review', NULL, '2026-06-26 00:00:00', '2026-06-24 21:26:53', NULL, 'uploads/documents/1-Februari-2026/1-Februari-2026-1782311213791-1-Februari-2026.pdf', '1 Februari 2026.pdf', 71160, 'application/pdf', '2026-06-24 21:26:53', '2026-06-26 12:25:25', NULL),
-(16, 'KAS WANITA 25', 'oke', 'oke', 'PFD', 'Tangerang', 1, 'Client Review', NULL, '2026-06-24 00:00:00', '2026-06-25 23:08:55', NULL, 'uploads/documents/KAS-WANITA-25/KAS-WANITA-25-1782403735166-KAS-WANITA-25.pdf', 'KAS WANITA 25.pdf', 131647, 'application/pdf', '2026-06-25 23:08:55', '2026-06-26 12:24:06', NULL);
+INSERT INTO `documents` (`id`, `document_number`, `title`, `description`, `discipline`, `area`, `revision`, `status`, `sla_status`, `sla_due_at`, `verify_deadline_date`, `review_comment`, `sla_started_at`, `repository_id`, `file_path`, `file_name`, `file_size`, `mime_type`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'P-CDU-PFD-001', 'Process Flow Diagram Area 2', 'Process Flow Diagram Area 2', 'PFD', 'CDU', 1, 'Approved', 'Final As-Built', '2026-06-22 09:00:00', '2026-06-29', 'Approved for current review cycle.', '2026-06-22 09:00:00', 1, '\\\\NAS\\LAB\\CDU\\PFD001', 'P-CDU-PFD-001.pdf', 1024000, 'application/pdf', '2026-06-24 12:06:10', '2026-06-24 12:06:10', NULL),
+(2, 'P-CDU-PID-010', 'Heater System', 'Heater System', 'PID', 'CDU', 2, 'Client Review', 'At Risk', '2026-06-20 14:32:00', '2026-06-30', 'Client verification in progress.', '2026-06-20 14:32:00', 1, '\\\\NAS\\LAB\\CDU\\PID010', 'P-CDU-PID-010.pdf', 2048000, 'application/pdf', '2026-06-24 12:06:10', '2026-06-24 12:06:10', NULL),
+(8, '1 Februari 2026', 'oke', 'oke', 'PFD', 'Tangerang', 1, 'Client Review', NULL, '2026-06-26 00:00:00', NULL, NULL, '2026-06-24 21:26:53', NULL, 'uploads/documents/1-Februari-2026/1-Februari-2026-1782311213791-1-Februari-2026.pdf', '1 Februari 2026.pdf', 71160, 'application/pdf', '2026-06-24 21:26:53', '2026-06-26 12:25:25', NULL),
+(16, 'KAS WANITA 25', 'oke', 'oke', 'PFD', 'Tangerang', 1, 'Client Review', NULL, '2026-06-24 00:00:00', NULL, NULL, '2026-06-25 23:08:55', NULL, 'uploads/documents/KAS-WANITA-25/KAS-WANITA-25-1782403735166-KAS-WANITA-25.pdf', 'KAS WANITA 25.pdf', 131647, 'application/pdf', '2026-06-25 23:08:55', '2026-06-26 12:24:06', NULL);
 
 --
 -- Dumping data for table `notifications`

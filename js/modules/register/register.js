@@ -1,5 +1,6 @@
 import { renderCrudPage } from "../../utils/crud-page.js";
 import { COLLECTIONS, DOCUMENT_EDITABLE_STATUSES, DOCUMENT_STATUSES } from "../../utils/constants.js";
+import { applyDocumentReviewFields, normalizeDocumentFormData } from "../../utils/document-form.js";
 
 export function render(container) {
   renderCrudPage(container, {
@@ -9,6 +10,8 @@ export function render(container) {
     apiResource: "documents",
     permissionModule: "document",
     description: "Search, filter, paginate, and manage master document register.",
+    prepareData: (data, record) => (record ? normalizeDocumentFormData(data, record) : data),
+    prepareFields: (fields, record) => (record ? applyDocumentReviewFields(fields, record, { includeOnCreate: false }) : fields),
     actions: ["view", "edit", "delete", "download"],
     searchPlaceholder: "Search document...",
     statusFilter: {
@@ -42,7 +45,7 @@ export function render(container) {
       { name: "area", label: "Area" },
       { name: "revision", label: "Revision", type: "number", required: true, min: 0 },
       { name: "status", label: "Status", required: true, options: DOCUMENT_EDITABLE_STATUSES },
-      { name: "sla", label: "SLA Timer", type: "date", lang: "en-GB", placeholder: "dd/mm/yyyy" },
+      { name: "sla", label: "SLA Timer", type: "date", lang: "en-US", placeholder: "mm/dd/yyyy" },
       { name: "nasLocation", label: "NAS Location" },
     ],
   });

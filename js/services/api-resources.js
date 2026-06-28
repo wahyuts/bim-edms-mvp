@@ -35,6 +35,8 @@ export function mapDocumentFromApi(row) {
     slaStartedAt: row.sla_started_at || "",
     slaStatus: row.sla_status || "",
     slaTimer: row.sla_timer?.label || "",
+    verifyDeadlineDate: toDateInput(row.verify_deadline_date || row.verifyDeadlineDate),
+    reviewComment: row.review_comment || row.reviewComment || "",
     nasLocation: row.file_path || row.repository_name || "",
     fileName: row.file_name || "",
     createdAt: row.created_at || "",
@@ -104,6 +106,8 @@ function documentFormData(formElement, data) {
   appendIfPresent(formData, "revision", data.revision);
   appendIfPresent(formData, "status", data.status);
   appendIfPresent(formData, "sla_due_at", data.sla);
+  appendIfPresent(formData, "verify_deadline_date", data.verifyDeadlineDate);
+  appendIfPresent(formData, "review_comment", data.reviewComment);
   appendIfPresent(formData, "file_name", data.fileName);
 
   return formData;

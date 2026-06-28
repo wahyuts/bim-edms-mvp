@@ -117,6 +117,8 @@ Backend schema may normalize this to `sla_due_at` or separate SLA tracking field
 | status          | varchar(100) |
 | sla_status      | varchar(50)  |
 | sla_due_at      | datetime     |
+| verify_deadline_date | date    |
+| review_comment  | text         |
 | repository_id   | bigint       |
 | file_path       | text         |
 | file_name       | varchar(255) |
