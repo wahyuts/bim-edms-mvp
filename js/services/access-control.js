@@ -24,7 +24,7 @@ const rolePermissions = {
     notification: ["view", "edit", "delete"],
   },
   Client: {
-    document: ["view", "download"],
+    document: ["view", "edit", "download"],
     transmittal: ["view"],
     escalation: [],
     audit: ["view"],

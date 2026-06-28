@@ -237,7 +237,7 @@ WHERE
   OR (r.name = 'Project Manager' AND p.code IN ('dashboard.view', 'document.create', 'document.view', 'document.edit', 'document.delete', 'document.download', 'document.upload', 'escalation.view', 'audit.view', 'storage.view', 'storage.create', 'notification.view', 'notification.edit', 'notification.delete'))
   OR (r.name = 'Document Controller' AND p.code IN ('dashboard.view', 'document.create', 'document.view', 'document.edit', 'document.delete', 'document.download', 'document.upload', 'escalation.view', 'audit.view', 'storage.view', 'storage.create', 'notification.view', 'notification.edit', 'notification.delete'))
   OR (r.name = 'Engineer' AND p.code IN ('dashboard.view', 'document.create', 'document.view', 'document.edit', 'document.download', 'document.upload', 'escalation.view', 'audit.view', 'storage.view', 'notification.view', 'notification.edit', 'notification.delete'))
-  OR (r.name = 'Client' AND p.code IN ('dashboard.view', 'document.view', 'document.download', 'audit.view', 'storage.view', 'notification.view', 'notification.edit', 'notification.delete'))
+  OR (r.name = 'Client' AND p.code IN ('dashboard.view', 'document.view', 'document.edit', 'document.download', 'audit.view', 'storage.view', 'notification.view', 'notification.edit', 'notification.delete'))
 ON DUPLICATE KEY UPDATE permission_id = VALUES(permission_id);
 
 INSERT INTO sla_rules (status_name, duration_hours, escalation_level) VALUES

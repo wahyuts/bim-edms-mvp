@@ -10,6 +10,7 @@
 - Restricted Storage Repository NAS edit/delete/download actions to Administrator only.
 - Improved View PFD and View P&ID modals with structured document detail layout.
 - Updated Dashboard Document Register Table actions to inline View/Edit/Download and removed NAS Location column from the dashboard table.
+- Granted Client role document edit permission so Edit appears on Dashboard, PFD, and P&ID document tables.
 
 ## 2026-06-13
 

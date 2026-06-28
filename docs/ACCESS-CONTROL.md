@@ -38,6 +38,10 @@ Hak akses diberikan berdasarkan Role dan diterapkan pada level menu, halaman, da
 
 # Document Register
 
+Source alignment:
+
+Client has `document.edit` permission and can see Edit action in Document Register table surfaces.
+
 | Action   | Admin | PM | DC | Engineer | Client |
 | -------- | ----- | -- | -- | -------- | ------ |
 | View     | ✓     | ✓  | ✓  | ✓        | ✓      |
@@ -49,6 +53,10 @@ Hak akses diberikan berdasarkan Role dan diterapkan pada level menu, halaman, da
 ---
 
 # PFD
+
+Source alignment:
+
+Client has `document.edit` permission and can see Edit action in PFD and P&ID tables.
 
 | Action   | Admin | PM | DC | Engineer | Client |
 | -------- | ----- | -- | -- | -------- | ------ |
@@ -187,7 +195,7 @@ Source alignment:
 * Route `/sla` memakai permission menu `dashboard`.
 * Semua role yang dapat melihat Dashboard dapat membuka SLA Monitoring.
 * Tombol `Edit` pada halaman SLA Monitoring mengikuti permission `document.edit`.
-* Client dapat melihat SLA Monitoring tetapi tidak melihat tombol Edit Document.
+* Client dapat melihat SLA Monitoring dan melihat tombol Edit Document sesuai permission `document.edit`.
 
 ---
 
